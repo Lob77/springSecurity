@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+</head>
+<body>
+<div class="container">
+    <th:block th:if="${requestDTO.getRole() == T(com.project.springsecurity.member.Role).USER}">
+        <form th:object="${requestDTO}" method="post" action="/join/user">
+            이름: <input style="display: block" type="text" id="userName" name="userName">
+            id: <input style="display: block" type="text" id="userId" name="userId">
+            password: <input style="display: block" type="text" id="password" name="password">
+
+            <button style="margin-top: 10px" type="submit">회원가입하기</button>
+        </form>
+    </th:block>
+    <th:block th:if="${requestDTO.getRole() == T(com.project.springsecurity.member.Role).ADMIN}">
+        <form th:object="${requestDTO}" method="post" action="/join/admin">
+            이름: <input style="display: block" type="text" id="userName" name="userName">
+            id: <input style="display: block" type="text" id="userId" name="userId">
+            password: <input style="display: block" type="text" id="password" name="password">
+            기업명: <input style="display: block" type="text" id="companyName" name="companyName">
+            기업코드:  <input style="display: block" type="text" id="companyCode" name="companyCode">
+            <button style="margin-top: 10px" type="submit">회원가입하기</button>
+        </form>
+    </th:block>
+</div>
+</body>
+</html>

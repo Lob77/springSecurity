@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>사용자 게시판</title>
+</head>
+<body>
+<div class="container">
+    <button type="button" th:onclick="|location.href='@{/admin/admin}'|">관리자 페이지</button>
+    <table>
+        <tr>
+            <th style="border: 1px solid #ddd;" colspan="3">사용자 게시판</th>
+        </tr>
+        <tr>
+            <th style="border: 1px solid #ddd;">제목</th>
+            <th style="border: 1px solid #ddd;">글번호</th>
+            <th style="border: 1px solid #ddd;">작성날짜</th>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
