@@ -11,8 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class RequestDTO {
-    private Long id;
+public class MemberRequestDTO {
     private String userId;
     private String password;
     private Role role;
@@ -25,8 +24,16 @@ public class RequestDTO {
         return Member.builder()
                 .userId(userId)
                 .username(userName)
+                .role(role)
                 .password(passwordEncoder.encode(password))
-                .role(Role.USER)
+                .build();
+    }
+
+    public Admin toAdminEntity(PasswordEncoder passwordEncoder){
+        return Admin.builder()
+                .userId(userId)
+                .companyCode(companyCode)
+                .companyName(companyName)
                 .build();
     }
 }

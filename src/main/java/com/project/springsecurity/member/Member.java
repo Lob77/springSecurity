@@ -13,9 +13,6 @@ import lombok.NoArgsConstructor;
 public class Member {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(nullable = false)
     private String userId;
 
@@ -36,6 +33,4 @@ public class Member {
         this.password = password;
         this.role = role;
     }
-
-
 }

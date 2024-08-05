@@ -23,14 +23,8 @@ public class LoginService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 
-        try{
             Member member = memberRepository.findByUserId(userId).orElseThrow(() -> new UsernameNotFoundException("존재하지 않는 회원입니다."));
+
             return User.builder().username(member.getUsername()).password(member.getPassword()).roles(member.getRole().name()).build();
-        }catch (Exception e){
-            Admin admin = adminRepository.findByUserId(userId).orElseThrow(() -> new UsernameNotFoundException("존재하지 않는 회원입니다."));
-            return User.builder().username(admin.getUsername()).password(admin.getPassword()).roles(admin.getRole().name()).build();
-
-        }
-
     }
 }

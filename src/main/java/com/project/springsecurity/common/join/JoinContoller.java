@@ -1,8 +1,7 @@
 package com.project.springsecurity.common.join;
 
-import com.project.springsecurity.admin.dto.AdminRequestDTO;
-import com.project.springsecurity.member.dto.RequestDTO;
 import com.project.springsecurity.member.Role;
+import com.project.springsecurity.member.dto.MemberRequestDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -21,28 +20,30 @@ public class JoinContoller {
 
     @GetMapping("/user")
     public String join(Model model){
-        RequestDTO requestDTO = new RequestDTO();
+        MemberRequestDTO requestDTO = new MemberRequestDTO();
         requestDTO.setRole(Role.USER);
         model.addAttribute("requestDTO",requestDTO);
         return "join/join";
     }
 
     @PostMapping("/user")
-    public String join(RequestDTO userInfo){
+    public String join(MemberRequestDTO userInfo){
+        userInfo.setRole(Role.USER);
         joinService.addUser(userInfo);
         return "login/login";
     }
 
     @GetMapping("/admin")
     public String adminJoin(Model model){
-        AdminRequestDTO adminRequestDTO = new AdminRequestDTO();
-        adminRequestDTO.setRole(Role.ADMIN);
-        model.addAttribute("requestDTO",adminRequestDTO);
+        MemberRequestDTO requestDTO = new MemberRequestDTO();
+        requestDTO.setRole(Role.ADMIN);
+        model.addAttribute("requestDTO",requestDTO);
         return "join/join";
     }
 
     @PostMapping("/admin")
-    public String adminJoin(AdminRequestDTO userInfo){
+    public String adminJoin(MemberRequestDTO userInfo){
+        userInfo.setRole(Role.ADMIN);
         joinService.addAdminUser(userInfo);
         return "login/login";
     }
